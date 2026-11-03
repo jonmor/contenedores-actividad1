@@ -15,7 +15,37 @@ Para la practica se genero una app basica TODO API en 4 lenguajes, mismo contrat
 - `GET /todos` → lista de todos (de **todos** los servicios; la columna `lang` dice quién lo creó)
 - `POST /todos` con `{"title": "..."}` → 201 + el todo creado; 400 si falta `title`
 
+
+## Levantar con docker compose con build para generar las imagenes
+
+En este primer build, se ejecuta el archivo "docker-compose-creacion-imagen.yml" que contiene las configuraciones para hacer el build de las aplicaciones
+
+```bash
+docker compose -f docker-compose-creacion-imagen.yml up --build -d
+docker compose logs -f
+```
+
+## Generar tag de imagenes
+
+```bash
+docker tag actividad1-java:latest   jonme25/unir-act1:java-0.1
+docker tag actividad1-node:latest   jonme25/unir-act1:node-0.1
+docker tag actividad1-php:latest    jonme25/unir-act1:php-0.1
+docker tag actividad1-python:latest jonme25/unir-act1:python-0.1
+```
+
+## Generar push de imagenes a repositorio jonme25/unir-act1
+
+```bash
+docker push jonme25/unir-act1:java-0.1
+docker push jonme25/unir-act1:node-0.1
+docker push jonme25/unir-act1:php-0.1
+docker push jonme25/unir-act1:python-0.1
+```
+
 ## Levantar con docker compose
+
+En esta opcion toma el archivo "docker-compose.yml" que ya cuenta con la configuracion para utilizar las imagenes generadas en el repo de docker hub
 
 ```bash
 docker compose up --build -d
